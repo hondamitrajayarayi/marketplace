@@ -28,8 +28,8 @@ Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
 
 Route::group(['middleware' => ['web']], function () {
     Route::group(['middleware' => 'admin'], function () {
-        Route::get('/admin', 'AdminController@index')->name('admin');
     });
+    Route::get('/admin', 'AdminController@index')->name('admin');
     
     // Admin
     // Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
