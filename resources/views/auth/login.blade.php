@@ -43,9 +43,8 @@
                                 
                                 <div class="p-2">
                                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                                       
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        
+                                       @csrf
+                                               
                                         <div class="form-group">
                                             <label for="username">Username</label>
                                             <!-- <input type="text" class="form-control" id="username" placeholder="Enter username"> -->
