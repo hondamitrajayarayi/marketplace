@@ -28,11 +28,11 @@ Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
 
 Route::group(['middleware' => ['web']], function () {
     Route::group(['middleware' => 'admin'], function () {
+        // Route::get('/admin', 'AdminController@index')->name('admin');
     });
-    Route::get('/admin', 'AdminController@index')->name('admin');
-    
+ 
     // Admin
-    // Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
+    Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
     Route::get('/masteripW','AdminController@masteripW')->middleware('admin')->middleware('admin');
     Route::post('/tambahipW','AdminController@tambahipW')->name('tambahipW')->middleware('admin');
     Route::get('/ip/hapus/{id}','AdminController@hapusip')->middleware('admin');
