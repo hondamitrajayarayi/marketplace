@@ -30,7 +30,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['middleware' => 'admin'], function () {
         Route::get('/admin', 'AdminController@index')->name('admin');
     });
-    
+
     // Admin
     // Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
     Route::get('/masteripW','AdminController@masteripW')->middleware('admin')->middleware('admin');
