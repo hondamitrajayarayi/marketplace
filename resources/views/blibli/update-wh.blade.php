@@ -164,12 +164,10 @@
 
                         }).then(function(t) {
                             t.dismiss === Swal.DismissReason.timer && console.log("Sukses !")
-                        }),                
-                        $("#jumsukses").empty();            
+                        }),                          
                         $("#datagagal").empty();            
                         $("#databerhasil").empty();            
-                        $('#page').val(results.page);                 
-                        $("#jumsukses").append(results.jumsukses);            
+                        $('#page').val(results.page);            
                         $("#datagagal").append(results.datagagal);                
                         $("#databerhasil").append(results.databerhasil);                
                     } else {

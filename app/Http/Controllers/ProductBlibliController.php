@@ -148,6 +148,8 @@ class ProductBlibliController extends Controller
 
     public function updateStockPrice(Request $request)
     {
+        $databerhasil = [];
+        $datagagal = [];
 
         if ($request->page != Null) {
             // ENDPOINT SHOW DATA BLIBLI
@@ -155,7 +157,7 @@ class ProductBlibliController extends Controller
             $page = $request->page-1 ;
             $ENDP = 'https://api.blibli.com/v2/proxy/mta/api/businesspartner/v2/product/getProductList';
             $body = array(
-                            'size'  => 5, //max 100
+                            'size'  => 10, //max 100
                             'page'  => $page,
                         );
             
@@ -172,15 +174,22 @@ class ProductBlibliController extends Controller
                                     'channelId' => 'Honda Mitra Jaya Group'             
                                 ]))->json();
             $ProductData = $response['content'];
-
-            // dd($ProductData);
+            
             // ---------------------------------------------------------------
-            if ($ProductData == null) {
-                $page = $page+1;
-                $jumsukses = null;
-                $datagagal = null;
-                $pesan = 'Proses Selesai !';
+            if (empty($ProductData)) {
                 
+                $datagagal = null;
+                $page = 1;
+                $dataG = null;
+                $dataB = null;
+
+                return response()->json([
+                    'success'   => true,
+                    'message'   => 'Proses Selesai !',
+                    'databerhasil'=> $dataB,
+                    'datagagal' => $dataG,
+                    'page'      => $page,
+                ]);
 
             }else{
 
@@ -206,99 +215,95 @@ class ProductBlibliController extends Controller
                     $response2 = Http::withToken($BEARER)->get($URL,[
                             'fs_id' => '14130',
                             'sku'   => $sku['merchantSku'],
+                            // 'sku'   => '06401KYZ900',
                         ]);
 
                     $respon = $response2->json();
-                    dd($respon);
-                    if ($response2->status() == 200) {
+                    if ($respon['data'] != null) {
                         
                         $res3 = $respon['data'];
                         foreach ($res3 as $key) {
-                            // dd($key);
-                            $stok = 0;
-                            if (isset($key['stock']['value'])) {
-                                $stok = $key['stock']['value'];
-                            }
-
-                            $x[] = array(
-                                    'gdnSku'    => $sku['gdnSku'],
-                                    'sku'  => $sku['merchantSku'],
-                                    'harga'     => $key['price']['value'],
-                                    'stok'      => $stok
-                                );  
-                            $databerhasil[] =  $sku['productSku'];
-                        }                        
-                    }else{
-                        $datagagal[] =  $sku['productSku'];
-                    }
-                }
-                // dd($x, $datagagal);
-                foreach ($x as $z) {
-                                
-                    $body = array(
-                                'availableStock' => $z['stok']
-                            );
-                    // dd($body);
-
-                    $header = array(
+                    
+                            $header = [
                                 'Api-Seller-Key' => 'BEB7A4CFEECA91E38948327F38ECF6B110768F664E49AE734957E4554E3828E7',
                                 'Accept'        => 'application/json',
                                 'Content-Type'  => 'application/json'
-                            );
+                            ];
 
-                    $builder = array(
-                                'blibliSku' => $z['gdnSku'],
+                            $builder = [
+                                'blibliSku' => $sku['gdnSku'],
                                 'requestId' => 'eb20408b-dd59-4cbc-9979-ff50ab54d98b',
                                 'storeId'   => '10001',
                                 'channelId' => 'Honda Mitra Jaya Group',                
                                 'username'  => 'h.mitrajaya@gmail.com',
                                 'storeCode' => 'HOM-60047'
-                            );
+                            ];
 
-                    $harga_str  = preg_replace("/[^0-9]/", "", $z['harga']);
-                    $NEW_PRICE  = (int)$harga_str;
-                    if ($z['stok'] > 0) {
+                            // update stock
+                            $stok = 0;
+                            if (isset($key['stock']['value'])) {
+                                // $stok = $key['stock']['value'];
+                                $body = [
+                                    'availableStock' => (int)$key['stock']['value']
+                                ];
+                                
+                                $stok = (int) $key['stock']['value'];
+                            }else{
+                                $body = [
+                                    'availableStock' => 0
+                                ];
+                            }
+                            // ENDP UPDATE STOCK BLIBLI
+                            $ENDP = 'https://api.blibli.com/v2/proxy/seller/v1/products/'.$sku['gdnSku'].'/stock';
                             
-                        $body2 = array(
-                                    'buyable' => true,
-                                    'price' => array(
-                                        'regular'   => $NEW_PRICE,
-                                        'sale'      => $NEW_PRICE
-                                    ),
-                                    'sellerSku'=> $sku['merchantSku'],
-                                    'displayable'=> true,
-                                );
-                    }else{
-                        $body2 = array(
-                                    'buyable' => false,
-                                    'price' => array(
-                                        'regular'   => $NEW_PRICE,
-                                        'sale'      => $NEW_PRICE
-                                    ),
-                                    'displayable'=> false,
-                                );
-                    }   
-                    // dd($z['sku'], $body2);
-                    // ENDP UPDATE STOCK BLIBLI
-                    $ENDP = 'https://api.blibli.com/v2/proxy/seller/v1/products/'.$z['gdnSku'].'/stock';
-                    
-                    $responStok[] = Http::withBasicAuth('mta-api-HOM-60047-114d1','mta-api-oPKO9Dt5tvUK3kaUgEQpvIUHCqLqpK7wCIPLRqih8C1HC1FY3B')
-                        ->withBody(json_encode($body), 'application/json')
-                        ->withHeaders($header)
-                        ->put($ENDP.'?'.http_build_query($builder))
-                        ->status();
-                    
-                    // ENDP UPDATE HARGA BLIBLI
-                    $ENDP2 = 'https://api.blibli.com/v2/proxy/seller/v1/products/'.$z['gdnSku'];
-                
-                    $responHarga[] = Http::withBasicAuth('mta-api-HOM-60047-114d1','mta-api-oPKO9Dt5tvUK3kaUgEQpvIUHCqLqpK7wCIPLRqih8C1HC1FY3B')
-                        ->withBody(json_encode($body2), 'application/json')
-                        ->withHeaders($header)
-                        ->put($ENDP2.'?'.http_build_query($builder))
-                        ->json();
-                }
+                            $responStok = Http::withBasicAuth('mta-api-HOM-60047-114d1','mta-api-oPKO9Dt5tvUK3kaUgEQpvIUHCqLqpK7wCIPLRqih8C1HC1FY3B')
+                                ->withBody(json_encode($body), 'application/json')
+                                ->withHeaders($header)
+                                ->put($ENDP.'?'.http_build_query($builder))
+                                ->json();
 
-                dd($databerhasil, $responStok, $responHarga);
+
+                            // update harga
+                            if (isset($key['price']['value'])) {
+                                $harga_str = preg_replace("/[^0-9]/", "", $key['price']['value']);
+                                $NEW_PRICE = (int) $harga_str;
+                                if ($stok > 0) {
+                                    $body2 = [
+                                        'buyable' => true,
+                                        'price' => [
+                                            'regular' => $NEW_PRICE,
+                                            'sale' => $NEW_PRICE
+                                        ],
+                                        'sellerSku' => $sku['gdnSku'],
+                                        'displayable' => true,
+                                    ];
+                                } else {
+                                    // jika stok nya Nol item tidak dijual
+                                    $body2 = [
+                                        'buyable' => false,
+                                        'price' => [
+                                            'regular' => $NEW_PRICE,
+                                            'sale' => $NEW_PRICE
+                                        ],
+                                        'displayable' => false,
+                                    ];
+                                }
+                                $ENDP2 = 'https://api.blibli.com/v2/proxy/seller/v1/products/' . $sku['gdnSku'];
+
+                                $responHarga = Http::withBasicAuth('mta-api-HOM-60047-114d1', 'mta-api-oPKO9Dt5tvUK3kaUgEQpvIUHCqLqpK7wCIPLRqih8C1HC1FY3B')
+                                    ->withBody(json_encode($body2), 'application/json')
+                                    ->withHeaders($header)
+                                    ->put($ENDP2 . '?' . http_build_query($builder))
+                                    ->json();
+                            }
+                            
+                            $databerhasil[] =  $sku['productSku'] . '<br><em>(' .$sku['merchantSku'].')</em>';
+                        }                        
+                    }else{
+                        $datagagal[] =  $sku['productSku'] . '<br><em>(' .$sku['merchantSku'].')</em>';
+                    }
+                }
+                
                 $dataG = '';
                 foreach ($datagagal as $key) {
                      $dataG.='<li>'.$key.'</li>';
@@ -309,13 +314,10 @@ class ProductBlibliController extends Controller
                      $dataB.='<li>'.$key.'</li>';
                 }
 
-       
-                $jumsukses = count($responStok);
 
                 return response()->json([
                     'success'   => true,
                     'message'   => 'Permintaan berhasil diproses !',
-                    'jumsukses' => $jumsukses,
                     'datagagal' => $dataG,
                     'databerhasil'=> $dataB,
                     'page'      => $request->page + 1,
@@ -323,14 +325,12 @@ class ProductBlibliController extends Controller
             }           
         }else{
             $page = 1;
-            $jumsukses = null;
             $dataG = null;
             $dataB = null;
 
             return response()->json([
                 'success'   => false,
                 'message'   => 'Permintaan gagal diproses !',
-                'jumsukses' => $jumsukses,
                 'databerhasil'=> $dataB,
                 'datagagal' => $dataG,
                 'page'      => $page,
