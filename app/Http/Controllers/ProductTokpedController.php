@@ -431,7 +431,7 @@ class ProductTokpedController extends Controller
                         'shop_id' => $SHOP_ID,                  
                     ])
             );              
-        dd($res->json());
+        // dd($res->json());
         return response()->json([
             'success'   => true,
             'message'   => 'Data Selesai Diproses !'
