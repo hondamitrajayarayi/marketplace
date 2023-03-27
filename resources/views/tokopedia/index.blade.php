@@ -93,17 +93,492 @@
                                         <input class="form-check-input selectAll" name="all" type="checkbox">
                                     </div>
                                 </th>
+                                <th>No</th>
                                 <th colspan="2">Info Produk</th>
                                 <th>Price</th>
                                 <th align="center">Stock</th>
                                 <th align="center">Aktif</th>
                             </tr>
                             </thead>
-
-                            <tbody id='mytable'>                                               
+                            <tbody id="mytableload">
+                                <tr>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0">
+                                        <div class="ph-item big p-0 mb-0 border-0" id="listloading">
+                                            <div class="ph-col-12 p-1 mb-0">
+                                                <div class="ph-row">
+                                                    <div class="ph-col-12 big ph-border-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody>
+                            <tbody id='mytable'>  
+                                                                              
+                            </tbody>
+                            
                             <tfoot>
-                                <th colspan="6"><center><button class="btn btn-light" id="loadmore">Load More ...</button></center></th>
+                                <th colspan="7">
+                                    <div class="row mt-1 mb-1">
+                                        <div class="col-9"> &nbsp;</div>
+                                        <div class="input-group col-3" >
+                                            <div class="input-group">
+                                            <button class="btn btn-secondary" type="button" id="loadmoremin">Previous</button>
+                                            &nbsp;&nbsp;<input type="text" min="1" value="1" class="form-control text-center" id="txtpage"> &nbsp;&nbsp;
+                                            <button class="btn btn-secondary" type="button" id="loadmore">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    {{-- <button class="btn btn-light" id="loadmore">Previous</button></center>
+                                    <input type="number" style="text-align: center;" class="form-control" name="offset" min="1" value="1" aria-describedby="option-offset" placeholder="Min 1" id="page">
+                                
+                                    <button class="btn btn-light" id="loadmore">Next</button></center> --}}
+                                </th>
                             </tfoot>
                         </table>
                     </div>
@@ -152,16 +627,48 @@
 
 @push('scripts')
 <script>
+    
     var page = 1; //track user scroll as page number, right now page number is 1
     load_more(page); //initial content load
+    var txtpage = document.getElementById("txtpage");
+    txtpage.addEventListener("keypress", function(event) {
+        // If the user presses the "Enter" key on the keyboard
+        if (event.key === "Enter") {
+            if ($('#txtpage').val() > 0) {
+                $("#mytable").empty();
+                load_more($('#txtpage').val());
+            }else{
+                alert('Min page 1 !');
+            }  
+        }
+    });
+    $('#loadmoremin').click(function(){
+        var pg = parseInt($('#txtpage').val()) - 1;
+        $("#mytable").empty();
+        if (pg > 0) {
+            $('#txtpage').val(pg);
+            load_more(pg);
+        }else{
+            pg++;
+            alert('Min page 1 !');
+            load_more(1);
+        }
+        console.log(page);
+    }); 
      
     $('#loadmore').click(function(){
-        page++;
-        load_more(page);
+        var pg = parseInt($('#txtpage').val()) + 1;
+        $("#mytable").empty();
+        console.log(pg);
+        $('#txtpage').val(pg);
+        // load_more(page);
+        load_more(pg);
     });    
 
     function load_more(page){
-        
+        console.log(page);
+        $('#mytableload').removeAttr('hidden');
+        // 
         $.ajax({
             url: '?page=' + page,
             type: "get",
@@ -172,18 +679,22 @@
         }).done(function(data){
             if(data.length == 0){
                 console.log(data);
-               
+                alert('Maksimum Data!')
                 //notify user if nothing to load
                 $('.ajax-loading').html("No more records!");
                 return;
             }
-                console.log(data.length);
-
+            
             $('.ajax-loading').hide(); //hide loading animation once data is received
+            $('#mytableload').attr('hidden','hidden');
+            $("#mytable").empty();
             $("#mytable").append(data); //append data into #results element          
         })
         .fail(function(jqXHR, ajaxOptions, thrownError){
               alert('No response from server');
+              alert('all data is displayed ! ');
+              load_more(1);
+              $('#txtpage').val('1');
         });
     }
 

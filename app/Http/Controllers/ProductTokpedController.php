@@ -34,14 +34,13 @@ class ProductTokpedController extends Controller
             // Show data where shop id--------------------------------------------------------
             $URL    = 'https://fs.tokopedia.net/inventory/v1/fs/14130/product/info';
             $PAGE   = $request->page;
-            $PER_PAGE = '30';
+            $PER_PAGE = '10';
             $response = Http::withToken($TOKEN)->get($URL,[
                     'shop_id'   => $SHOP_ID,
                     'page'      => $PAGE,
                     'per_page'  => $PER_PAGE
                 ])->json();
             
-            // dd($response['data']);
             $ProductData = $response['data'];
             $data= '';
 
@@ -50,8 +49,15 @@ class ProductTokpedController extends Controller
                 return $hasil; 
             }
 
-            foreach ($ProductData as $post) {
+            if($PAGE > 1){
+                
+                $no = ($PAGE - 1) * 10;
+            }else{
+                $no = 0;
+            }
 
+            foreach ($ProductData as $post) {
+                $no = $no+1;
                 if (isset($post['price']['value'])) {
                     $price = $post['price']['value'];
                 }else{
@@ -70,9 +76,17 @@ class ProductTokpedController extends Controller
                     $status = '';                    
                 }
 
+                if(!empty($post['other']['sku'])){
+                    $psku = $post['other']['sku'];
+                }else{
+                    $psku = '';
+                }
+                
                 $data.='<tr>
                     <td>
-                         <input type="checkbox" name="data" class="selectBox" value="'.$post['other']['sku'].'"/>
+                         <input type="checkbox" name="data" class="selectBox" value="'. $psku .'"/>
+                    </td>
+                    <td>'.$no.'
                     </td>
                     <td>
                         <img src="'.$post['pictures'][0]['ThumbnailURL'].'" width="50px">
@@ -378,16 +392,16 @@ class ProductTokpedController extends Controller
                         'grant_type' => 'client_credentials',                  
                     ]))->json();
         $TOKEN = $response['access_token'];
-        dd($request);
+        
         $ALL = $request->data;
         $SHOP_ID    = "8160708";
         
-        dd($ALL, count($ALL));
         $persenharga = $request->persenharga;
         $Dikali = floatval(str_replace(',', '.', $persenharga)); //convert to float
 
         $URL    = 'https://fs.tokopedia.net/inventory/v1/fs/14130/product/info';
-        $a=0;       
+        $a=0;
+        $hasil = [];       
         foreach ($ALL as $sku) {
             // endp get info product
             $response = Http::withToken($TOKEN)->get($URL,[
@@ -406,19 +420,18 @@ class ProductTokpedController extends Controller
             }
 
             $HARGAFIX   = (int)$HARGAFIX;
-
             $hasil[$a] = array('sku' => $sku, 'new_price' => $HARGAFIX);
-
+            
             $a++;
         }               
-
+        
         $res = Http::withToken($TOKEN)
             ->withBody(json_encode($hasil), 'application/json')
             ->post('https://fs.tokopedia.net/inventory/v1/fs/14130/price/update?'.http_build_query([
                         'shop_id' => $SHOP_ID,                  
                     ])
             );              
-        
+        dd($res->json());
         return response()->json([
             'success'   => true,
             'message'   => 'Data Selesai Diproses !'
