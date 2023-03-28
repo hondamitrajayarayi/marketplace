@@ -414,7 +414,7 @@ class ProductTokpedController extends Controller
             $HASILPERSEN= $harga * $Dikali / 100;
             
             if($request->aksiharga == 'naik'){
-                $HARGAFIX   = $harga + $HASILPERSEN;                
+                $HARGAFIX   = $harga + (ceil($HASILPERSEN / 100) * 100);                
             }else{
                 $HARGAFIX   = $harga - $HASILPERSEN;
             }

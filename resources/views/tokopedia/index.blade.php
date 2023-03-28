@@ -568,7 +568,7 @@
                                         <div class="input-group col-3" >
                                             <div class="input-group">
                                             <button class="btn btn-secondary" type="button" id="loadmoremin">Previous</button>
-                                            &nbsp;&nbsp;<input type="text" min="1" value="1" class="form-control text-center" id="txtpage"> &nbsp;&nbsp;
+                                            &nbsp;&nbsp;<input type="text" min="1" class="form-control text-center" id="txtpage"> &nbsp;&nbsp;
                                             <button class="btn btn-secondary" type="button" id="loadmore">Next</button>
                                             </div>
                                         </div>
@@ -628,8 +628,11 @@
 @push('scripts')
 <script>
     
-    var page = 1; //track user scroll as page number, right now page number is 1
-    load_more(page); //initial content load
+    // var page = 1; //track user scroll as page number, right now page number is 1
+    load_more( !$('#txtpage').val() ? 1 : $('#txtpage').val()); //initial content load
+    if (!$('#txtpage').val()) {
+        $('#txtpage').val(1)
+    }
     var txtpage = document.getElementById("txtpage");
     txtpage.addEventListener("keypress", function(event) {
         // If the user presses the "Enter" key on the keyboard
@@ -722,7 +725,7 @@
         $('#submitHarga').click(function(){
             var aksiharga = document.getElementsByName('aksiharga')[0].value;
             var persenharga = document.getElementsByName('persenharga')[0].value;
-            var page = 1;
+            // var page = 1;
             // console.log(aksiharga);
             Swal.fire({
                 title: "Permintaan sedang diproses !",
@@ -759,7 +762,7 @@
                         $('#ModalHarga').modal('hide');
                         $('#persenharga').val('');
                         $('#mytable').empty();
-                        load_more(page);                
+                        load_more($('#txtpage').val());                
                     } else {
                         swal("Error!", results.message, "error");
                         $('.selectAll').prop('checked', false);
