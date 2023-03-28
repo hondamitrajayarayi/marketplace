@@ -209,6 +209,14 @@ class ProductTokpedController extends Controller
                             ];
                         $responStk = $this-> _getResponsePost($body, 'https://fs.tokopedia.net/inventory/v1/fs/14130/stock/update?', $params);
                         // dd($responStk);
+                        
+                        // UPDATE PRICE
+                        $bodyp[] = array(
+                            'sku'   => $cek->item_no,
+                            'new_price' => (int)$cek->price
+                        );
+
+                        $responPrice = $this-> _getResponsePost($bodyp, 'https://fs.tokopedia.net/inventory/v1/fs/14130/price/update?', $params);
                             
                         // update status to active
                         if ($cek->qty > 0) {
