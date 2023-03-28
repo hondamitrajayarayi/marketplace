@@ -401,7 +401,7 @@ class ProductTokpedController extends Controller
                     ]))->json();
         $TOKEN = $response['access_token'];
         
-        $ALL = $request->data;
+        $ALL = explode(",",$request->data);
         $SHOP_ID    = "8160708";
         
         $persenharga = $request->persenharga;
@@ -442,7 +442,9 @@ class ProductTokpedController extends Controller
         // dd($res->json());
         return response()->json([
             'success'   => true,
-            'message'   => 'Data Selesai Diproses !'
+            'message'   => 'Data Selesai Diproses !',
+            'response' => $res->json(),
+            'product'   => $ALL
         ]);
         
     }

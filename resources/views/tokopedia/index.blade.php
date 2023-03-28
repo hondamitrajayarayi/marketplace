@@ -90,7 +90,7 @@
                             <tr>
                                 <th style="width: 20px;">
                                     <div class="form-check mb-3">
-                                        <input class="form-check-input selectAll" name="all" type="checkbox">
+                                        <input class="form-check-input selectAll" id="selectAll" name="all" type="checkbox">
                                     </div>
                                 </th>
                                 <th>No</th>
@@ -596,14 +596,16 @@
                     </div>
                     <div class="modal-body">
                     <div class="row">
-                        <div class="col-2"></div>
+                        <div class="col-2"> 
+                            <input type="hidden" id="Dataitem" name="Dataitem">
+                        </div>
                         <div class="col-8">
                             <div class="input-group" >
                                 <select name="aksiharga" id="formrow-inputState" class="form-control" >
                                     <option value="naik">Naikan Harga</option>
                                     <option value="turun">Turunkan Harga</option>
                                 </select>
-                                <input type="text" class="form-control" placeholder="Contoh : 0.5" name="persenharga" required autocomplete="off">
+                                <input type="text" class="form-control" placeholder="Contoh : 0.5" id="persenharga" name="persenharga" required autocomplete="off">
                                 <div class="input-group-append">
                                     <span class="input-group-text">%</span>
                                 </div>
@@ -703,11 +705,11 @@
 
     $('#BtnPrice').click(function(){
         var data = [];
+        $("#Dataitem").val('');
         $('.selectBox:checked').each(function(i){
               data[i] = $(this).val();
         });
-        // console.log(data);  
-        let _token   = $('meta[name="csrf-token"]').attr('content'); 
+        console.log(data); 
         
         if(data.length === 0){
             console.log('Pilih !');            
@@ -720,73 +722,78 @@
         }else{
             console.log(data);
             $("#ModalHarga").modal();
+            $("#Dataitem").val(data);
         }
         
-        $('#submitHarga').click(function(){
-            var aksiharga = document.getElementsByName('aksiharga')[0].value;
-            var persenharga = document.getElementsByName('persenharga')[0].value;
-            // var page = 1;
-            // console.log(aksiharga);
-            Swal.fire({
-                title: "Permintaan sedang diproses !",
-                html: "Tunggu beberapa saat.",
-                allowOutsideClick: false,
-                onBeforeOpen: function() {
-                    Swal.showLoading()
-                }
-            }),
-            $.ajax({
-                url:"{{ route('productSelUpdate')}}",
-                type:"POST",
-                data:{
-                    data:data,
-                    aksiharga:aksiharga,
-                    persenharga:persenharga,
-                    _token: _token
-                },
-                dataType: "json",
-                
-                success: function(results){                  
+        
+    });
+    $('#submitHarga').click(function(){
+        var data = $("#Dataitem").val();
+        let _token   = $('meta[name="csrf-token"]').attr('content'); 
+        console.log(data);
+        var aksiharga = document.getElementsByName('aksiharga')[0].value;
+        var persenharga = document.getElementsByName('persenharga')[0].value;
+        // var page = 1;
+        // console.log(aksiharga);
+        Swal.fire({
+            title: "Permintaan sedang diproses !",
+            html: "Tunggu beberapa saat.",
+            allowOutsideClick: false,
+            onBeforeOpen: function() {
+                Swal.showLoading()
+            }
+        }),
+        $.ajax({
+            url:"{{ route('productSelUpdate')}}",
+            type:"POST",
+            data:{
+                data:data,
+                aksiharga:aksiharga,
+                persenharga:persenharga,
+                _token: _token
+            },
+            dataType: "json",
+            
+            success: function(results){                  
 
-                    if (results.success === true) {
-                        Swal.fire({  
-                            type: "success",
-                            title: "Berhasil !",  
-                            html: "Harga Product terpilih berhasil diproses.",                        
-                            showConfirmButton: false,
-                            timer: 2000
-                        }).then(function(t) {
-                            t.dismiss === Swal.DismissReason.timer && console.log("Sukses !")
-                        })
-                        $('.selectBox').prop('checked', false);
-                        $('#ModalHarga').modal('hide');
-                        $('#persenharga').val('');
-                        $('#mytable').empty();
-                        load_more($('#txtpage').val());                
-                    } else {
-                        swal("Error!", results.message, "error");
-                        $('.selectAll').prop('checked', false);
-                        $('.selectBox').prop('checked', false); 
-                        $('#ModalHarga').modal('hide'); 
-                    }             
-                },
-                error: function(results){
+                if (results.success === true) {
                     Swal.fire({  
-                        type: "warning",
-                        title: "Request Time Out !", 
-                        html: "Silahkan Proses Ulang",                         
+                        type: "success",
+                        title: "Berhasil !",  
+                        html: "Harga Product terpilih berhasil diproses.",                        
                         showConfirmButton: false,
-                        timer: 5000
+                        timer: 2000
                     }).then(function(t) {
-                        t.dismiss === Swal.DismissReason.timer && console.log("gagal !")
-                    }),
-                    $('.selectAll').prop('checked', false);
+                        t.dismiss === Swal.DismissReason.timer && console.log("Sukses !")
+                    })
                     $('.selectBox').prop('checked', false);
-                    $('#ModalHarga').modal('hide');                 
-                }
-            });
+                    $('.selectAll').prop('checked', false);
+                    $('#ModalHarga').modal('hide');
+                    $('#persenharga').val('');
+                    $('#mytable').empty();
+                    load_more($('#txtpage').val());                
+                } else {
+                    swal("Error!", results.message, "error");
+                    $('.selectAll').prop('checked', false);
+                    $('.selectBox').prop('checked', false); 
+                    $('#ModalHarga').modal('hide'); 
+                }             
+            },
+            error: function(results){
+                Swal.fire({  
+                    type: "warning",
+                    title: "Request Time Out !", 
+                    html: "Silahkan Proses Ulang",                         
+                    showConfirmButton: false,
+                    timer: 5000
+                }).then(function(t) {
+                    t.dismiss === Swal.DismissReason.timer && console.log("gagal !")
+                }),
+                $('.selectAll').prop('checked', false);
+                $('.selectBox').prop('checked', false);
+                $('#ModalHarga').modal('hide');                 
+            }
         });
-
     });
 </script>
 
