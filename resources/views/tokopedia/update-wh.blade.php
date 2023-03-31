@@ -71,15 +71,34 @@
                             <br>
                             <br>
                             <div class="row">
-                                <div class="col-4"></div>
-                                <div class="input-group col-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="option-offset" style="font-size: 11px;">Selesaikan Proses</span>
+                                <div class="col-1"></div>
+                                <div class="col-3">
+                                    
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="option-offset" style="font-size: 11px;">Proses</span>
+                                        </div>
+                                        <input type="number" style="text-align: center;" class="form-control" name="offset" min="1" value="{{ $page }}" aria-describedby="option-offset" placeholder="Min 1" name="page" id="page">
                                     </div>
-                                    <input type="number" style="text-align: center;" class="form-control" name="offset" min="1" value="{{ $page }}" aria-describedby="option-offset" placeholder="Min 1" name="page" id="page">
                                 </div>
-                                <!-- <div class="col-3"> -->
-                                    <button class="btn btn-success" id="submit">Submit</button> &nbsp;&nbsp;
+                                <div class="col-6">    
+                                    <div class="input-group">
+                                        <select name="aksiharga" id="aksiharga" class="form-control">
+                                            <option value="naik">Naikan Harga</option>
+                                            <option value="turun">Turunkan Harga</option>
+                                        </select>
+                                        <input type="text" class="form-control" placeholder="Contoh : 0.5" id="persenharga" name="persenharga" required="" autocomplete="off">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-1 text-start">
+                                    <button class="btn btn-success" id="submit">Submit</button>
+                                </div>
+                                <div class="col-1">
+                                    
+                                </div>
                                     <!-- <button class="btn btn-light" id="reset" ><i class="bx bx-reset"></i> Reset</button> -->
                                 <!-- </div> -->
                                 
@@ -148,6 +167,8 @@
         
         e.preventDefault();
         var page = $('#page').val();
+        var aksiharga = $('#aksiharga').val();
+        var persenharga = $('#persenharga').val();
         
 
         if(page.length === 0){
@@ -171,6 +192,8 @@
                 type:"POST",
                 data:{
                     page:page,
+                    aksiharga:aksiharga,
+                    persenharga:persenharga,
                 },
                 dataType: "json",
                 

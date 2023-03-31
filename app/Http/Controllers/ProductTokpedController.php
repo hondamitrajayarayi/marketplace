@@ -211,10 +211,26 @@ class ProductTokpedController extends Controller
                         // dd($responStk);
                         
                         // UPDATE PRICE
-                        $bodyp[] = array(
-                            'sku'   => $cek->item_no,
-                            'new_price' => (int)$cek->price
-                        );
+                        if ($request->persenharga != 0) {
+                            # code...
+                            $HASILPERSEN= $cek->price * $request->persenharga / 100;
+            
+                            if($request->aksiharga == 'naik'){
+                                $HARGAFIX   = $cek->price + (ceil($HASILPERSEN / 100) * 100);                
+                            }else{
+                                $HARGAFIX   = $cek->price - $HASILPERSEN;
+                            }
+
+                            $bodyp[] = array(
+                                'sku'   => $cek->item_no,
+                                'new_price' => (int)$HARGAFIX
+                            );
+                        }else{
+                            $bodyp[] = array(
+                                'sku'   => $cek->item_no,
+                                'new_price' => (int)$cek->price
+                            );
+                        }
 
                         $responPrice = $this-> _getResponsePost($bodyp, 'https://fs.tokopedia.net/inventory/v1/fs/14130/price/update?', $params);
                             
